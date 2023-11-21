@@ -23,4 +23,4 @@ Link is developed as a tool. It is not meant to be used for any malicious activi
 The creators and contributors of Link are not responsible for any misuse or damages caused by the use of this tool. Use it at your own risk, and be aware of the potential consequences.
 
 ## Link to the Link
-...
+https://anriquegame.github.io/link/
