@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Botão de Download</title>
+    </head>
+    <body>
+        <input type="text" id="linkInput" placeholder="Link"></input>
+        <button id="downloadButton">Baixar Arquivo</button>
+
+        <script>
+            document.getElementById('downloadButton').addEventListener('click', function() {
+
+                var arquivoUrl = document.getElementById('linkInput').value;
+
+                // Criar um elemento de link temporário
+                var a = document.createElement('a');
+                a.href = arquivoUrl;
+
+                // Adicionar o link ao documento
+                document.body.appendChild(a);
+
+                // Acionar o clique no link
+                a.click();
+
+                // Remover o link do documento
+                document.body.removeChild(a);
+            });
+        </script>
+    </body>
+</html>
