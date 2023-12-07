@@ -1,49 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download e ZIP</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
-</head>
-<body>
-    <input type="text" id="linkInput" placeholder="Link do Arquivo">
-    <button id="downloadButton" onclick="downloadAndZip()">Baixar e ZIP</button>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Botão de Download</title>
+    </head>
+    <body>
+        <input type="text" id="linkInput" placeholder="Link"></input>
+        <button id="downloadButton">Baixar Arquivo</button>
 
-    <script>
-        function downloadAndZip() {
-            var arquivoUrl = document.getElementById('linkInput').value;
+        <script>
+            document.getElementById('downloadButton').addEventListener('click', function() {
 
-            // Use fetch para obter o conteúdo do arquivo
-            fetch(arquivoUrl, {mode: 'no-cors',})
-                .then(response => response.arrayBuffer())
-                .then(arrayBuffer => {
-                    // Crie um arquivo ZIP
-                    var zip = new JSZip();
-                    
-                    // Adicione o conteúdo do arquivo ao ZIP
-                    zip.file('arquivo.baixado', arrayBuffer);
+                var arquivoUrl = document.getElementById('linkInput').value;
 
-                    // Gere o arquivo ZIP
-                    zip.generateAsync({ type: 'blob' })
-                        .then(function (zipContent) {
-                            var url = URL.createObjectURL(zipContent);
+                // Criar um elemento de link temporário
+                var a = document.createElement('a');
+                a.href = arquivoUrl;
 
-                            // Crie um link para download
-                            var a = document.createElement('a');
-                            a.href = url;
-                            a.download = 'arquivo.zip';
+                // Adicionar o link ao documento
+                document.body.appendChild(a);
 
-                            // Adicione o link ao corpo da página e clique automaticamente
-                            document.body.appendChild(a);
-                            a.click();
+                // Acionar o clique no link
+                a.click();
 
-                            // Remova o link após o download
-                            document.body.removeChild(a);
-                        });
-                })
-                .catch(error => console.error('Erro ao baixar o arquivo:', error));
-        }
-    </script>
-</body>
+                // Remover o link do documento
+                document.body.removeChild(a);
+            });
+        </script>
+    </body>
 </html>
