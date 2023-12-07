@@ -15,7 +15,7 @@
             var arquivoUrl = document.getElementById('linkInput').value;
 
             // Use fetch para obter o conteúdo do arquivo
-            fetch(arquivoUrl)
+            fetch(arquivoUrl, {mode: 'no-cors',})
                 .then(response => response.blob())
                 .then(blob => {
                     // Crie um arquivo ZIP
