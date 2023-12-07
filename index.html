@@ -16,11 +16,13 @@
 
             // Use fetch para obter o conteúdo do arquivo
             fetch(arquivoUrl, {mode: 'no-cors',})
-                .then(response => response.blob())
-                .then(blob => {
+                .then(response => response.arrayBuffer())
+                .then(arrayBuffer => {
                     // Crie um arquivo ZIP
                     var zip = new JSZip();
-                    zip.file('arquivo.baixado', blob);
+                    
+                    // Adicione o conteúdo do arquivo ao ZIP
+                    zip.file('arquivo.baixado', arrayBuffer);
 
                     // Gere o arquivo ZIP
                     zip.generateAsync({ type: 'blob' })
